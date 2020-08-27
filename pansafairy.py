@@ -39,6 +39,15 @@ async def bot_help(ctx):
         name='!망언, !diary',
         value='판사 역대 망언 출력해줌. 숫자 같이 입력하면 해당 번호 망언 나옴.'
     )
+    embed.add_field(
+        name='!선택 {항목 1} {항목 2}...',
+        value='선택 장애인들이 넘치는 동아리를 위한 멋진 커맨드. 띄어쓰기로 나눠서 이것저것 입력하면 하나 골라줌.'
+    )
+    embed.add_field(
+        name='!모두모여 {내용}',
+        value='내용 추가해서 모두에게 멘션함'
+    )
+    embed.set_footer(text='강원대 판화사랑 동아리 컴정 15학번 과잠선배 제작')
 
     await ctx.send(embed=embed)
 
@@ -104,5 +113,15 @@ async def absurd_add(ctx, *, arg):
         colour=random.randint(0, 0xffffff)
     )
     await ctx.send(embed=embed)
+
+@bot.command(name='선택')
+async def select_once(ctx, *, arg):
+
+    await ctx.send(random.choice(arg.split(' ')))
+
+@bot.command(name="모두모여")
+async def everyone(ctx, *, arg):
+
+    await ctx.send('@everyone ' + arg)
 
 bot.run(token)
